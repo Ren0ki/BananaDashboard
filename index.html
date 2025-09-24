@@ -54,16 +54,24 @@ myConnector.getData = function(table, doneCallback) {
       doneCallback();
     });
 };
-      tableau.init();
       tableau.registerConnector(myConnector);
 
-      document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("submitButton").addEventListener("click", function() {
-          tableau.connectionName = "MySQL PHP Data";
-          tableau.submit();
-        });
-      });
-    })();
+
+document.addEventListener("DOMContentLoaded", function () {
+          if (tableau && tableau.init) {
+            try {
+              tableau.init();
+            } catch (e) {}
+          }
+          document
+            .getElementById("submitButton")
+            .addEventListener("click", function () {
+              tableau.connectionName = "MySQL PHP Data";
+              tableau.submit();
+            });
+            });
+        })();
+
   </script>
 </head>
 <body>

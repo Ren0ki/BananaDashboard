@@ -54,8 +54,6 @@ myConnector.getData = function(table, doneCallback) {
       doneCallback();
     });
 };
-      tableau.registerConnector(myConnector);
-
 
 document.addEventListener("DOMContentLoaded", function () {
           if (tableau && tableau.init) {
@@ -63,9 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
               tableau.init();
             } catch (e) {}
           }
-          document
-            .getElementById("submitButton")
-            .addEventListener("click", function () {
+          tableau.registerConnector(myConnector);
+          document.getElementById("submitButton").addEventListener("click", function () {
               tableau.connectionName = "MySQL PHP Data";
               tableau.submit();
             });

@@ -31,18 +31,30 @@
       };
 
       // Fetch your data
-      myConnector.getData = function(table, doneCallback) {
-        fetch("https://web.ics.purdue.edu/~glagman/CGT47000_MP1/endpoint-mp1.php")
-          .then(response => response.json())
-          .then(data => {
-            table.appendRows(data);
-            doneCallback();
-          })
-          .catch(error => {
-            console.error("Fetch error:", error);
-            doneCallback();
-          });
-      };
+myConnector.getData = function(table, doneCallback) {
+  fetch("https://yourdomain.com/your-php-file.php")
+    .then(response => response.json())
+    .then(data => {
+      const cleanedData = data.map(row => ({
+        id: parseInt(row.id),
+        size: parseFloat(row.size),
+        weight: parseFloat(row.weight),
+        sweetness: parseFloat(row.sweetness),
+        softness: parseFloat(row.softness),
+        harvest: parseFloat(row.harvest),
+        ripeness: parseFloat(row.ripeness),
+        acidity: parseFloat(row.acidity),
+        quality: row.quality  // string
+      }));
+
+      table.appendRows(cleanedData);
+      doneCallback();
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+      doneCallback();
+    });
+};
 
       tableau.registerConnector(myConnector);
 

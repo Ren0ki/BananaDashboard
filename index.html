@@ -35,6 +35,7 @@ myConnector.getData = function(table, doneCallback) {
   fetch("https://web.ics.purdue.edu/~glagman/CGT47000_MP1/endpoint-mp1.php")
     .then(response => response.json())
     .then(data => {
+      console.log("Fetched Data:", data); 
       const cleanedData = data.map(row => ({
         id: parseInt(row.id),
         size: parseFloat(row.size),

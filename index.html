@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MySQL Data Connector</title>
+  <script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js"></script>
+  <script>
+    (function() {
+      var myConnector = tableau.makeConnector();
+
+      // Describe your data
+      myConnector.getSchema = function(schemaCallback) {
+        const cols = [
+          { id: "id", alias: "ID", dataType: tableau.dataTypeEnum.int },
+          { id: "size", alias: "Size", dataType: tableau.dataTypeEnum.double },
+          { id: "weight", alias: "Weight", dataType: tableau.dataTypeEnum.double },
+          { id: "sweetness", alias: "Sweetness", dataType: tableau.dataTypeEnum.double },
+          { id: "softness", alias: "Softness", dataType: tableau.dataTypeEnum.double },
+          { id: "harvest", alias: "HarvestTime", dataType: tableau.dataTypeEnum.double },
+          { id: "ripeness", alias: "Ripeness", dataType: tableau.dataTypeEnum.double },
+          { id: "acidity", alias: "Acidity", dataType: tableau.dataTypeEnum.double },
+          { id: "quality", alias: "Quality", dataType: tableau.dataTypeEnum.string }
+        ];
+
+        const tableSchema = {
+          id: "mysqlData",
+          alias: "MySQL Data via PHP",
+          columns: cols
+        };
+
+        schemaCallback([tableSchema]);
+      };
+
+      // Fetch your data
+      myConnector.getData = function(table, doneCallback) {
+        fetch("https://web.ics.purdue.edu/~glagman/CGT47000_MP1/endpoint-mp1.php")
+          .then(response => response.json())
+          .then(data => {
+            table.appendRows(data);
+            doneCallback();
+          })
+          .catch(error => {
+            console.error("Fetch error:", error);
+            doneCallback();
+          });
+      };
+
+      tableau.registerConnector(myConnector);
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("submitButton").addEventListener("click", function() {
+          tableau.connectionName = "MySQL PHP Data";
+          tableau.submit();
+        });
+      });
+    })();
+  </script>
+</head>
+<body>
+  <h2>Connect to Banana Database</h2>
+  <button id="submitButton">Load Data in Tableau</button>
+</body>
+</html>

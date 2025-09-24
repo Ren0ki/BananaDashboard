@@ -7,7 +7,6 @@
     (function() {
       var myConnector = tableau.makeConnector();
 
-      // Describe your data
       myConnector.getSchema = function(schemaCallback) {
         const cols = [
           { id: "id", alias: "ID", dataType: tableau.dataTypeEnum.int },
@@ -30,7 +29,6 @@
         schemaCallback([tableSchema]);
       };
 
-      // Fetch your data
 myConnector.getData = function(table, doneCallback) {
   fetch("https://web.ics.purdue.edu/~glagman/CGT47000_MP1/endpoint-mp1.php")
     .then(response => response.json())
@@ -56,11 +54,10 @@ myConnector.getData = function(table, doneCallback) {
       doneCallback();
     });
 };
-
+      tableau.init();
       tableau.registerConnector(myConnector);
 
       document.addEventListener("DOMContentLoaded", function() {
-        tableau.init();
         document.getElementById("submitButton").addEventListener("click", function() {
           tableau.connectionName = "MySQL PHP Data";
           tableau.submit();

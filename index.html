@@ -10,22 +10,23 @@
       myConnector.getSchema = function(schemaCallback) {
         const cols = [
           { id: "id", alias: "ID", dataType: tableau.dataTypeEnum.int },
-          { id: "size", alias: "Size", dataType: tableau.dataTypeEnum.double },
-          { id: "weight", alias: "Weight", dataType: tableau.dataTypeEnum.double },
-          { id: "sweetness", alias: "Sweetness", dataType: tableau.dataTypeEnum.double },
-          { id: "softness", alias: "Softness", dataType: tableau.dataTypeEnum.double },
-          { id: "harvest", alias: "HarvestTime", dataType: tableau.dataTypeEnum.double },
-          { id: "ripeness", alias: "Ripeness", dataType: tableau.dataTypeEnum.double },
-          { id: "acidity", alias: "Acidity", dataType: tableau.dataTypeEnum.double },
+          { id: "size", alias: "Size", dataType: tableau.dataTypeEnum.float },
+          { id: "weight", alias: "Weight", dataType: tableau.dataTypeEnum.float },
+          { id: "sweetness", alias: "Sweetness", dataType: tableau.dataTypeEnum.float },
+          { id: "softness", alias: "Softness", dataType: tableau.dataTypeEnum.float },
+          { id: "harvest", alias: "HarvestTime", dataType: tableau.dataTypeEnum.float },
+          { id: "ripeness", alias: "Ripeness", dataType: tableau.dataTypeEnum.float },
+          { id: "acidity", alias: "Acidity", dataType: tableau.dataTypeEnum.float },
           { id: "quality", alias: "Quality", dataType: tableau.dataTypeEnum.string }
         ];
 
         const tableSchema = {
-          id: "mysqlData",
-          alias: "MySQL Data via PHP",
+          id: "BananaTotal",
+          alias: "All Banana Data",
           columns: cols
         };
 
+        console.log("Schema:", tableSchema);
         schemaCallback([tableSchema]);
       };
 

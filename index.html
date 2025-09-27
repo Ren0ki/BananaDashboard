@@ -35,11 +35,11 @@ myConnector.getData = function(table, doneCallback) {
     .then(data => {
       console.log("Fetched Data:", data); 
       const cleanedData = data.map(row => ({
-        id: parseInt(row.id),
+        id: parseInt(row.id, 10),
         size: parseFloat(row.size),
         weight: parseFloat(row.weight),
         sweetness: parseFloat(row.sweetness),
-        harvest: parseFloat(row.harvest),
+        harvest: parseFloat(row.harvest_time),
         ripeness: parseFloat(row.ripeness),
         acidity: parseFloat(row.acidity),
         quality: row.quality  // string

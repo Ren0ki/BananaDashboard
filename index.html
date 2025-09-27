@@ -13,7 +13,7 @@
           { id: "size", alias: "Size", dataType: tableau.dataTypeEnum.float },
           { id: "weight", alias: "Weight", dataType: tableau.dataTypeEnum.float },
           { id: "sweetness", alias: "Sweetness", dataType: tableau.dataTypeEnum.float },
-          { id: "harvest", alias: "HarvestTime", dataType: tableau.dataTypeEnum.float },
+          { id: "harvest_time", alias: "HarvestTime", dataType: tableau.dataTypeEnum.float },
           { id: "ripeness", alias: "Ripeness", dataType: tableau.dataTypeEnum.float },
           { id: "acidity", alias: "Acidity", dataType: tableau.dataTypeEnum.float },
           { id: "quality", alias: "Quality", dataType: tableau.dataTypeEnum.string }
@@ -39,7 +39,7 @@ myConnector.getData = function(table, doneCallback) {
         size: parseFloat(row.size),
         weight: parseFloat(row.weight),
         sweetness: parseFloat(row.sweetness),
-        harvest: parseFloat(row.harvest_time),
+        harvest_time: parseFloat(row.harvest_time),
         ripeness: parseFloat(row.ripeness),
         acidity: parseFloat(row.acidity),
         quality: row.quality  // string
